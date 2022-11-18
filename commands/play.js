@@ -23,6 +23,6 @@ module.exports = {
         const stream = await (YTDL(ytlink, {filter: "audioonly"}));
         const resource = createAudioResource(stream);
         player.play(resource);
-        await interaction.reply({content: 'Playing!', ephemeral: true});
+        await interaction.reply({content: `Tocando ${ytlink}`, });
     }
 }

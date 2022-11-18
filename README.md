@@ -1,0 +1,1 @@
+Extremely simple bot made to play music. Probably won't have a sophisticated queue or anything of the sort. Made mostly for practice, personal purposes, and stubborness over losing my old bot on the change to slash commands.

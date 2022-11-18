@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, ChannelType } = require('discord.js');
-const { joinVoiceChannel, VoiceConnection } = require('@discordjs/voice');
+const { joinVoiceChannel, VoiceConnection, createAudioPlayer, NoSubscriberBehavior } = require('@discordjs/voice');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -19,6 +19,13 @@ module.exports = {
             adapterCreator: interaction.guild.voiceAdapterCreator,
         });
         global.connection = voiceConnection;
+        const player = createAudioPlayer({
+            behaviors: {
+                noSubscriber: NoSubscriberBehavior.Pause,
+            },
+        });
+        global.player = player;
+        voiceConnection.subscribe(player);
         await interaction.reply({content: 'Connected!', ephemeral: true});
     },
 };

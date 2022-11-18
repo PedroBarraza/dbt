@@ -13,16 +13,10 @@ module.exports = {
             .setDescription('link')
             .setRequired(true)),
     async execute(interaction) {
-        const player = createAudioPlayer({
-            behaviors: {
-                noSubscriber: NoSubscriberBehavior.Pause,
-            },
-        });
-        global.connection.subscribe(player);
         const ytlink = interaction.options.getString('ytlink');
         const stream = await (YTDL(ytlink, {filter: "audioonly"}));
         const resource = createAudioResource(stream);
-        player.play(resource);
+        global.player.play(resource);
         await interaction.reply({content: `Tocando ${ytlink}`, });
     }
 }

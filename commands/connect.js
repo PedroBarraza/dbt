@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, ChannelType } = require('discord.js');
-const { joinVoiceChannel } = require('@discordjs/voice');
+const { joinVoiceChannel, VoiceConnection } = require('@discordjs/voice');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -18,5 +18,7 @@ module.exports = {
             guildId: interaction.guildId,
             adapterCreator: interaction.guild.voiceAdapterCreator,
         });
+        global.connection = voiceConnection;
+        await interaction.reply({content: 'Connected!', ephemeral: true});
     },
 };

@@ -3,7 +3,7 @@ const path = require('node:path');
 const { Client, Collection, Events, GatewayIntent, GatewayIntentBits } = require('discord.js');
 const { token }= require('./config.json');
 
-const client = new Client({intents: [GatewayIntentBits.Guilds]});
+const client = new Client({intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates]});
 
 console.log(token);
 
@@ -30,8 +30,7 @@ client.login(token);
 
 client.on(Events.InteractionCreate, async interaction => {
     if (!interaction.isChatInputCommand()) return;
-    console.log(interaction);
-    
+    //console.log(interaction);
     const command = interaction.client.commands.get(interaction.commandName);
     if (!command) {
         console.error(`No command matching ${interaction.commandName}was found.`);
